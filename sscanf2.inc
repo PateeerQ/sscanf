@@ -1358,7 +1358,7 @@ forward OnCachedInit();
 /**
  * <library>sscanf</library>
  * <remarks>
- * Called when a player change names.
+ * Called when player name changes.
  * </remarks>
  */
 stock SSCANF__SetPlayerName(playerid, const name[])
