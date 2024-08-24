@@ -1355,6 +1355,31 @@ forward OnCachedInit();
 	CHAIN_FORWARD:SSCANF_OnPlayerDisconnect(playerid, reason) = 1;
 #endif
 
+/**
+ * <library>sscanf</library>
+ * <remarks>
+ * Called when a player change names.
+ * </remarks>
+ */
+stock SSCANF__SetPlayerName(playerid, const name[])
+{
+	new 
+            SSCANF_value = SetPlayerName(playerid, name)
+    	;
+
+	if (SSCANF_value == 1 && SSCANF_gInit == 1)
+	{
+		SSCANF_Join(playerid, name, bool:IsPlayerNPC(playerid));
+	}
+	return SSCANF_value;
+}
+#if defined _ALS_SetPlayerName
+	#undef SetPlayerName
+#else
+	#define _ALS_SetPlayerName
+#endif
+#define SetPlayerName SSCANF__SetPlayerName
+
 // Ensure that these purely internal natives can't be called from outside this
 // include.
 #define SSCANF_Init
